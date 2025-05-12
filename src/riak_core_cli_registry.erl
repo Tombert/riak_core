@@ -46,14 +46,5 @@ register_cli() ->
 
 -spec load_schema() -> ok.
 load_schema() ->
-	Dirs = application:get_env(riak_core, schema_dirs),
-	io:format("Dirs: ~p~n", [Dirs]),
-    case Dirs of
-        {ok, Directories} ->
-            io:format("~n[riak_core] Loading CLI schema from: ~p~n", [Directories]),
-            ok = clique_config:load_schema(Directories);
-        _ ->
-            Default = [code:lib_dir()],
-            io:format("~n[riak_core] No schema_dirs defined. Using default: ~p~n", [Default]),
-            ok = clique_config:load_schema(Default)
-    end.
+    %% Skip schema loading entirely (not needed unless using CLI config stuff)
+    ok.
