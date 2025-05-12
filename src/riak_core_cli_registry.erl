@@ -42,7 +42,8 @@ register_node_finder() ->
 
 -spec register_cli() -> ok.
 register_cli() ->
-    clique:register(?CLI_MODULES).
+	 ok.
+    % clique:register(?CLI_MODULES).
 
 -spec load_schema() -> ok.
 load_schema() ->
