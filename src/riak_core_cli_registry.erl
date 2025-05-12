@@ -48,7 +48,10 @@ register_cli() ->
 load_schema() ->
     case application:get_env(riak_core, schema_dirs) of
         {ok, Directories} ->
+            io:format("~n[riak_core] Loading CLI schema from: ~p~n", [Directories]),
             ok = clique_config:load_schema(Directories);
         _ ->
-            ok = clique_config:load_schema([code:lib_dir()])
+            Default = [code:lib_dir()],
+            io:format("~n[riak_core] No schema_dirs defined. Using default: ~p~n", [Default]),
+            ok = clique_config:load_schema(Default)
     end.
